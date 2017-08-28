@@ -56,7 +56,7 @@ const confirmNameAndPassword = ((req, res, next) => {
 server.post('/users', confirmNameAndPassword, (req, res) => {
   const { username, password } = req.body;
   bcrypt.hash(password, BCRYPT_COST, (err, passwordHash) => {
-    //  VVV ------------------------------------- WHAT COULD CAUSE AN ERROR HERE? (Just programming mistakes?)
+    //  VVV ------------------------------------- WHAT COULD CAUSE AN ERROR HERE? (Just programming mistakes? Bad user input?)
     if (err) sendServerError({ 'That password broke us :_(': err.message, 'ERROR STACK': err.stack }, res);
     new User({ username, passwordHash })
     .save((error, user) => {
@@ -133,7 +133,7 @@ server.use((req, res, next) => {
 });
 // GLOBAL MIDDLEWARE for EXTRA CREDIT http://localhost:3000/top-secret/...
 // USING WILDCARD *
-server.use('/top-secret/*', (req, res, next) => {
+server.use('/top-secret/*', (req, res, next) => { // <~~~~ props to Antonio & Jake!!
   if (!req.session.user) {
     sendUserError('You need to tell us who you are for TOP-SECRET STUFF!!!', res);
     return;
