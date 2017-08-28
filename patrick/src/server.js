@@ -12,11 +12,11 @@ const BCRYPT_COST = 11;
 
 const server = express();
 
-server.use(bodyParser.json());
+server.use(bodyParser.json()); // <~~~ Higher Order Function
 
 // express-session deprecated undefined resave option; provide resave option src/server.js:19:12
 // express-session deprecated undefined saveUninitialized option; provide saveUninitialized option src/server.js:19:12
-server.use(session({
+server.use(session({  // <~~~ Higher Order Function
   secret: 'e5SPiqsEtjexkTj3Xqovsjzq8ovjfgVDFMfUzSmJO21dtXs4re',
   // https://github.com/expressjs/session/issues/56
   // https://github.com/expressjs/session#options

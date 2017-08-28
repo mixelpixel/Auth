@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 mongoose.models = {};
 mongoose.modelSchemas = {};
 
-mongoose.Promise = Promise;
+mongoose.Promise = Promise; // <---- Just for this Lab, not best practice
 mongoose.connect('mongodb://localhost/users', { useMongoClient: true });
 
 const UserSchema = new mongoose.Schema({
